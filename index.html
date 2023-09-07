@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current UTC Time and Date</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="img_holder">
+            <img data-testid="slackDisplayImage" src="./images/IMG.jpg" />
+        </div>
+        <h1 data-testid="slackUserName">Olabode Samuel</h1>
+        <h1>Current UTC Time and Date</h1>
+        <h3 data-testid="myTrack">Track:- Frontend</h3>
+        <div class="detail_container">
+            <p id="utc-time" data-testid="currentUTCTime"></p>
+            <p id="day-of-week" data-testid="currentDayOfTheWeek"></p>
+        </div>
+        
+        <a href="#" class="git_link" data-testid=“githubURL”>Github Code</a>
+    </div>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: black
+        }
+        h3{
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 1rem;
+        }
+        .img_holder{
+            height:300px;
+            width: 300px;
+            border-radius: 100%;   
+        }
+        .img_holder img{
+            height: 100%;
+            width:100%;
+            
+            border-radius: 100%;
+        }
+        .wrapper h1{
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .detail_container{
+            text-align: center;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .detail_container p:first-child{
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: orange;
+        }
+        .git_link{
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.30s ;
+            border-radius: 8px;
+        }
+        .git_link:hover{
+            background-color: white;
+            color: black;
+            
+        }
+    </style>
+
+    <script>
+        function updateUTCTimeAndDayOfWeek() {
+            const now = new Date();
+            
+            // Get UTC time
+            const utcString = now.toISOString().slice(0, 19).replace("T", " ");
+            document.getElementById("utc-time").textContent = utcString + " UTC";
+
+            // Get day of the week
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const dayOfWeek = daysOfWeek[now.getUTCDay()];
+            document.getElementById("day-of-week").textContent = "Day: " + dayOfWeek;
+        }
+
+        // Update the UTC time and day of the week every second
+        setInterval(updateUTCTimeAndDayOfWeek, 1000);
+
+        // Initial call to display the time and day of the week
+        updateUTCTimeAndDayOfWeek();
+    </script>
+</body>
+</html>
